@@ -1,4 +1,3 @@
-/ebin
 /doc
 /_test
 /.eunit
@@ -7,3 +6,6 @@
 /TEST-*.xml
 /deps
 *.swp
+.settings
+.project
+target

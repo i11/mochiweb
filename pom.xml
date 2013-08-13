@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.erlang</groupId>
+	<artifactId>mochiweb</artifactId>
+	<version>2.7.0-SNAPSHOT</version>
+	<packaging>erlang-std</packaging>
+	<name>mochiweb</name>
+	<description>MochiMedia Web Server</description>
+	<scm>
+		<connection>scm:git:https://github.com/i11/${project.artifactId}.git</connection>
+		<developerConnection>scm:git:https://github.com/i11/${project.artifactId}.git</developerConnection>
+		<url>scm:git:https://github.com/i11/${project.artifactId}.git</url>
+	</scm>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>testResources</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>testResources</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>eu.lindenbaum</groupId>
+				<artifactId>maven-erlang-plugin</artifactId>
+				<version>2.2.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<compilerOptions>{d,
+						'gen_tcp_r15b_workaround'},{d,'crypto_compatibility'}</compilerOptions>
+					<testCompilerOptions>verbose,{d,
+						'gen_tcp_r15b_workaround'},{d,'crypto_compatibility'}</testCompilerOptions>
+					<skipDialyzer>true</skipDialyzer>
+					<otpRelease>R15*</otpRelease>
+				</configuration>
+			</plugin>
+		</plugins>
+		<testResources>
+			<testResource>
+				<directory>${project.basedir}/support</directory>
+				<targetPath>${project.build.directory}/${project.artifactId}-${project.version}-test/support</targetPath>
+			</testResource>
+		</testResources>
+	</build>
+</project>
